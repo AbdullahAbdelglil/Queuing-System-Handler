@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Queuing System Solver</title>
+</head>
+<body>
+
+<div class="container text-center"><br>
+    <p class="fw-bold fs-3 text-primary">Welcome In Our Application</p>
+    <p class="fw-bold fs-5 text-primary">🔶 Queuing System Solver 🔶</p>
+</div>
+<br><hr>
+
+<div class="position-absolute top-50 start-50  translate-middle w-25">
+    <br><p  class="fw-bold fs-5 text-danger">Please enter your system characteristics 🔻</p><br>
+    <div class="formContainer">
+        <form action="#" th:action="@{/queue/solveTheSystem}" th:object="${systemCharacteristics}" th:method="POST">
+
+            <div class="mb-3">
+
+                <label for="lambda" class="form-label fw-bold">Arrival rate</label><span class="text-danger fw-bold">*</span>
+                <input type="text" class="form-control" id="lambda" placeholder="Lambda" th:field="*{arrivalRate}"/>
+
+                <span th:if="${#fields.hasErrors('arrivalRate')}"
+                      th:errors="*{arrivalRate}"
+                      class="text-danger">
+                 </span>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label for="mu" class="form-label fw-bold">Service Rate</label><span class="text-danger fw-bold">*</span>
+                <input type="text" class="form-control" id="mu" placeholder="Mu" th:field="*{serviceRate}"/>
+
+                <span th:if="${#fields.hasErrors('serviceRate')}"
+                      th:errors="*{serviceRate}"
+                      class="text-danger">
+                </span>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label for="c" class="form-label fw-bold">Number Of Servers</label><span class="text-danger fw-bold">*</span>
+                <input type="text" class="form-control" id="c" placeholder="C" th:field="*{numberOfServers}"/>
+
+                <span th:if="${#fields.hasErrors('numberOfServers')}"
+                      th:errors="*{numberOfServers}"
+                      class="text-danger">
+                </span>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label for="k" class="form-label fw-bold">System Capacity</label><span class="text-danger fw-bold"></span>
+                <input type="text" class="form-control" id="k" placeholder="K" th:field="*{systemCapacity}"/>
+
+                <span th:if="${#fields.hasErrors('systemCapacity')}"
+                      th:errors="*{systemCapacity}"
+                      class="text-danger">
+                </span>
+
+            </div>
+
+            <br>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-primary me-md-2" type="submit">Show Results</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>
